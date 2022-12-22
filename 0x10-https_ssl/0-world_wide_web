@@ -1,19 +1,29 @@
-#!/usr/bin/env bash
-# Usage: ./1-world_wide_web <domain> <subdomain>
-# Display information about subdomains.
+#!/bin/bash
 
-domain_information () {
-    line=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
-    echo "$2 $line" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
+# Function to display information about a subdomain
+display_subdomain_info() {
+  domain=$1
+  subdomain=$2
+
+  # Use dig to query the DNS records for the subdomain
+  dns_records=$(dig "$subdomain.$domain" +short)
+
+  # Use awk to extract the record type and destination from the DNS records
+  record_type=$(echo "$dns_records" | awk '{print $5}')
+  destination=$(echo "$dns_records" | awk '{print $6}')
+
+  # Output the subdomain information
+  echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
-if [ "$#" == 1 ]
-then
-  domain_information "$1" "www"
-  domain_information "$1" "lb-01"
-  domain_information "$1" "web-01"
-  domain_information "$1" "web-02"
-elif [ "$#" == 2 ]
-then
-  domain_information "$1" "$2"
+# Check if a subdomain was specified
+if [ -z "$2" ]; then
+  # No subdomain was specified, so display information for all subdomains
+  display_subdomain_info "$1" "www"
+  display_subdomain_info "$1" "lb-01"
+  display_subdomain_info "$1" "web-01"
+  display_subdomain_info "$1" "web-02"
+else
+  # A subdomain was specified, so only display information for that subdomain
+  display_subdomain_info "$1" "$2"
 fi
