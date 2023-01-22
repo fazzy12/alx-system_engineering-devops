@@ -1,6 +1,42 @@
 #!/usr/bin/env bash
 #Install nginx and configure
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" | sudo tee /var/www/html/index.html
-sudo service nginx start
+
+#!/bin/bash
+
+# update package lists
+apt-get update
+
+# install nginx
+apt-get install -y nginx
+
+# configure nginx to listen on port 80
+sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+
+# restart nginx to apply changes
+service nginx restart
+
+# check if nginx is running on port 80
+if netstat -tupln | grep -q :80; then
+  echo "Nginx is running on port 80"
+else
+  echo "Nginx is not running on port 80"
+  exit 1
+fi
+
+# check if nginx returns expected response
+response=$(curl -sL -w "%{http_code}\\n" "http://localhost" -o /dev/null)
+if [ "$response" == "200" ]; then
+  echo "Nginx is returning expected response"
+else
+  echo "Nginx is not returning expected response"
+  exit 1
+fi
+
+
+
+
+
+# sudo apt-get -y update
+# sudo apt-get -y install nginx
+# echo "Hello World!" | sudo tee /var/www/html/index.html
+# sudo service nginx start
