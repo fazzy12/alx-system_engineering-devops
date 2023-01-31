@@ -5,12 +5,10 @@ Query Reddit API for number of subscribers for a given subreddit
 import requests
 
 def number_of_subscribers(subreddit):
-    
     """
         return number of subscribers for a given subreddit
         return 0 if invalid subreddit given
     """
-    
     headers = {'User-Agent': 'MyBot/0.0.1'}
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     response = requests.get(url, headers=headers)
