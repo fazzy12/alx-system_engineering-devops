@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script prints "Best School" 10 times with a while loop the "Hi" on the minth iteration
+
+SCHOOL="Best School"
+
+count=0
+while [ $count -le 10 ]
+do
+    if [ $count -eq 9 ]
+    then
+        echo "Hi"
+    else
+        echo "$SCHOOL"
+    fi
+    count=$((count + 1))
+done
