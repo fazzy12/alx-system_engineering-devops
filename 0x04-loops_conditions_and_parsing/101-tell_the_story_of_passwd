@@ -4,10 +4,7 @@
 
 # Read the /etc/passwd file line by line
 while IFS=':' read -r username password uid gid info home shell
-do
-    # Extract the user's full name and additional information from the info field
-    user_info="$(echo "$info" | cut -d ',' -f 5-)"
-    
+do 
     # Display the user information in the specified format
      echo "The user $username is part of the $gid gang,"\
       "lives in $home and rides $shell."\
