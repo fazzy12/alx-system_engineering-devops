@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# This script will read the file /etc/passwd and print the username, user ID, and home directory of each user
+
+
+# Set the field separator to ':'
+IFS=':'
+
+# Read the /etc/passwd file line by line
+while read -r username password uid gid info home shell
+do
+    # Extract the user's full name and additional information from the info field
+    user_info="$(echo "$info" | cut -d ',' -f 5-)"
+    
+    # Display the user information in the specified format
+    echo "The user $username is part of the $gid gang, lives in $home and rides $shell."
+    echo "$uid's place is protected by the passcode $password, more info about the user here: $user_info"
+done < /etc/passwd
+
+# Reset the field separator to its default value
+IFS=$' \t\n'
+
