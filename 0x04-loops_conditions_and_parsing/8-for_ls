@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script displays the content of the current directory:
+
+
+for file in *
+do
+        # Extract the part of the name after the first dash
+        without_dash=$(echo "$file" | cut -d'-' -f2-)
+        # Print the modified name in a list format
+        echo "$without_dash"
+done
+  if [-f 'file']
+    then
