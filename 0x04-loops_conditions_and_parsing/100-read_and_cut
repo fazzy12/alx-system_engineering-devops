@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script will read the file /etc/passwd and print the username, user ID, and home directory of each user
+
+
+# Define the file path
+passwd_file="/etc/passwd"
+
+# Check if the file exists
+if [ -e "$passwd_file" ]
+then
+    # Read the file line by line using a while loop
+    while IFS=: read -r username _ uid _ home _
+    do
+        # Display the desired information
+        echo "$username:$uid:$home"
+    done < "$passwd_file"
+fi
