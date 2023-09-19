@@ -9,5 +9,3 @@ do
         # Print the modified name in a list format
         echo "$without_dash"
 done
-  if [-f 'file']
-    then
