@@ -1,4 +1,7 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 # Display the PID of the current script
 
-echo $$
+# echo $$
+
+# Alternatively, you can also use the following command:
+echo $BASHPID
