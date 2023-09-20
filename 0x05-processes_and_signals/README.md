@@ -24,9 +24,10 @@
 # Project: 0x05. Processes and Signals
 ## By [ifeanyi kalu](https://github.com/fazzy12)
 
-![GitHub](https://img.shields.io/github/license/fazzy12/https://github.com/fazzy12/alx-system_engineering-devops/tree/main/0x05-processes_and_signals?style=plastic)
-![GitHub contributors](https://img.shields.io/github/contributors/fazzy12/https://github.com/fazzy12/alx-system_engineering-devops/tree/main/0x05-processes_and_signals?style=plastic)
-![GitHub last commit](https://img.shields.io/github/last-commit/fazzy12/https://github.com/fazzy12/alx-system_engineering-devops/tree/main/0x05-processes_and_signals?style=plastic)
+![GitHub](https://img.shields.io/github/license/fazzy12/alx-system_engineering-devops?style=plastic)
+![GitHub contributors](https://img.shields.io/github/contributors/fazzy12/alx-system_engineering-devops?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/fazzy12/alx-system_engineering-devops?style=plastic)
+
 
 This project involved working with processes and signals in a Linux environment. Below, you'll find an overview of the tasks completed, what was learned, and the resources that helped during the project.
 
