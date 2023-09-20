@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script will read the file apache-access.log and print the IP and HTTP code of each request
+
+
+log_file="apache-access.log"
+
+# Use awk to extract and format the IP and HTTP code
+awk '{print $1, $9}' "$log_file"
