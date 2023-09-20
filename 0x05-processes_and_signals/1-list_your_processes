@@ -2,9 +2,6 @@
 #  a Bash script that displays a list of currently running processes.
 
 
-# Display the header
-echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
 
 # Use the ps command to list processes
-ps aux | awk 'NR > 1 {print $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11}' | sort -k3nr,3 | head -50
-
+ps -auxf
