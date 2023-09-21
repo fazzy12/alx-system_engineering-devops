@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #  A script 100-process_and_pid_file script and killing it with ctrl+c. 
 
-terminator() {
+cleanup() {
   rm /var/run/myscript.pid
   exit
 }
@@ -14,5 +14,5 @@ do
   sleep 2
   trap 'echo "Y U no love me?!"' SIGINT
   trap 'echo "I hate the kill command" && terminator' SIGTERM
-  trap 'terminator' SIGQUITgit 
+  trap 'cleanup' SIGQUITgit 
 done
