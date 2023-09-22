@@ -35,7 +35,7 @@ int main(void)
         {
             printf("Zombie process created, PID: %d\n", child_pid);
             /* The parent process gives time to child to become a zombie */
-            sleep(0);
+            sleep(1);
         }
         else
         {
