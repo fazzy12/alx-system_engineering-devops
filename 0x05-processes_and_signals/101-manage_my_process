@@ -1,36 +1,25 @@
 #!/usr/bin/env bash
 # This script manages 'manage_my_process'
 
-
-# Check for root privilege
-if [ "$(id -u)" != "0" ]; then
-    echo "This script must be run as root."
-    exit 1
+if [ "${1}" == "start" ]
+then
+    ./manage_my_process &
+    touch /var/run/my_process.pid
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process started"
+elif [ "${1}" == "stop" ]
+then
+    echo "manage_my_process stopped"
+    kill "$(cat /var/run/my_process.pid)"
+    rm /var/run/my_process.pid
+elif [ "${1}" == "restart" ]
+then
+    kill "$(cat /var/run/my_process.pid)"
+    rm /var/run/my_process.pid
+    ./manage_my_process &
+    touch /var/run/my_process.pid
+    echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process restarted"
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
 fi
-
-# Check for the correct number of arguments
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 {start|stop|restart}"
-    exit 1
-fi
-
-# Define the path to the manage_my_process script
-MANAGE_SCRIPT="/home/fazzy/alx-system_engineering-devops/0x05-processes_and_signals/manage_my_process"
-
-# Check the command-line argument
-case "$1" in
-    start)
-        $MANAGE_SCRIPT start
-        ;;
-    stop)
-        $MANAGE_SCRIPT stop
-        ;;
-    restart)
-        $MANAGE_SCRIPT restart
-        ;;
-    *)
-        echo "Usage: $0 {start|stop|restart}"
-        exit 1
-esac
-
-exit 0
