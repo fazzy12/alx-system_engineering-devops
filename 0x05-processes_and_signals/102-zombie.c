@@ -30,21 +30,17 @@ int main(void)
     for (i = 0; i < 5; i++)
     {
         child_pid = fork();
-        if (child_pid == 0)
-        {
-            /* Child process */
-            exit(0);
-        }
-        else if (child_pid < 0)
-        {
-            perror("Fork error");
-            return (1);
-        }
-        else
+
+        if (child_pid > 0)
         {
             printf("Zombie process created, PID: %d\n", child_pid);
             /* The parent process gives time to child to become a zombie */
-            sleep(1);
+            sleep(0);
+        }
+        else
+        {
+            /* Child process */
+            exit(0);
         }
     }
 
