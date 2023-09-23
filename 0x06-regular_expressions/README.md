@@ -53,8 +53,10 @@ Regular expressions are a fundamental tool for software engineers, especially fo
 
 To complete this project, I utilized the following resources:
 
-- [Regular expressions - basics](http://www.regular-expressions.info/)
-- [Regular expressions - advanced](http://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+- [Regular expressions - basics](https://www.slideshare.net/neha_jain/introducing-regular-expressions)
+- [Regular expressions - advanced](https://www.slideshare.net/neha_jain/advanced-regular-expressions-80296518)
+- [Use a regular expression against a problem: now you have 2 problems](https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/)
+- [Learn Regular Expressions with simple, interactive exercises](https://regexone.com/)
 - [Rubular](http://rubular.com/): A useful tool for testing Ruby regular expressions.
 - [Regex101](https://regex101.com/): An online regex testing and debugging tool.
 - Project-specific instructions provided by ALX.
