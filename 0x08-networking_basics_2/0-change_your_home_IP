@@ -6,36 +6,3 @@
 # cp /etc/hosts hosts_tmp
 # sed -i s/127.*$/127.0.0.2\\tlocalhost\\n8.8.8.8\\tfacebook.com/g hosts_tmp
 # cp -f hosts_tmp /etc/hosts
-
-
-#!/bin/bash
-
-# Check if the script is running with root privileges
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run this script as root or with sudo."
-  exit 1
-fi
-
-# Define the IP address and hostname mappings
-localhost_ip="127.0.0.2"
-facebook_ip="8.8.8.8"
-
-# Check if the /etc/hosts file already contains the required mappings
-if grep -q "localhost" /etc/hosts && grep -q "facebook.com" /etc/hosts; then
-  echo "Hosts file is already configured."
-else
-  # Append the mappings to the /etc/hosts file
-  echo -e "$localhost_ip\tlocalhost" >> /etc/hosts
-  echo -e "$facebook_ip\tfacebook.com" >> /etc/hosts
-  echo "Hosts file configured."
-fi
-
-# Display the updated /etc/hosts file
-echo "Updated /etc/hosts file:"
-cat /etc/hosts
-
-# Optionally, flush DNS cache (for systemd-resolved)
-# systemctl restart systemd-resolved
-
-echo "Configuration complete."
-
