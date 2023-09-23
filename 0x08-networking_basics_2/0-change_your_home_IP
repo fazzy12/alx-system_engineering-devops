@@ -8,6 +8,7 @@
 # cp -f hosts_tmp /etc/hosts
 
 
+#!/bin/bash
 
 # Check if the script is running with root privileges
 if [ "$EUID" -ne 0 ]; then
@@ -37,3 +38,4 @@ cat /etc/hosts
 # systemctl restart systemd-resolved
 
 echo "Configuration complete."
+
