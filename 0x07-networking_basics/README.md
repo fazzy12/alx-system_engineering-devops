@@ -20,8 +20,12 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2" align="center">
+    <td align="center">
       <img src="image5.png" alt="Image 5" width="500"/>
+      <br/>
+    </td>
+    <td align="center">
+      <img src="giphy.gif" alt="Image 6" width="500"/>
       <br/>
     </td>
   </tr>
