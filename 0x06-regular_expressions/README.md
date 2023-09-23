@@ -79,7 +79,7 @@ To use this repository and complete the Regular Expressions project tasks, follo
 2. Navigate to the 0x06-regular_expressions/ directory:
 
 ```
-   `cd` alx-system_engineering-devops/0x06-regular_expressions/
+   cd alx-system_engineering-devops/0x06-regular_expressions/
 ```
 3. Inside the `0x06-regular_expressions/` directory, you will find Ruby script files for each task 
 (e.g., `0-simply_match_school.rb`, `1-repetition_token_0.rb`, etc.).
