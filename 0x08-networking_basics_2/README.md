@@ -21,8 +21,8 @@ To successfully complete this project, refer to the following resources:
 
 - [What is localhost](https://en.wikipedia.org/wiki/Localhost)
 - [What is 0.0.0.0](https://en.wikipedia.org/wiki/0.0.0.0)
-- [What is the hosts file](https://en.wikipedia.org/wiki/Hosts_(file))
-- [Netcat examples](https://www.tecmint.com/netcat-nc-command-guide/)
+- [What is the hosts file](https://www.makeuseof.com/tag/modify-manage-hosts-file-linux/)
+- [Netcat examples](https://www.thegeekstuff.com/2012/04/nc-command-examples/)
 - Man pages or help for the following commands:
   - ifconfig
   - telnet
