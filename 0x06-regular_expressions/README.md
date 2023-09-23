@@ -1,5 +1,5 @@
-<div style="width: 100%; height: 0; padding-bottom: 100%; position: relative;">
-    <img src="shouting.jpg" alt="OOP Image" style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+<div style="width: 100%; height: 0; padding-bottom: 50%; position: relative;">
+    <img src="shouting.jpg" alt="OOP Image" style="position: absolute; width: 800%; height: 100%; object-fit: cover;">
 </div>
 
 # Project README: Regular Expressions Project
