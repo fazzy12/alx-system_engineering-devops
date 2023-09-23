@@ -2,7 +2,6 @@
 # Bash script displays listenting sockets(-l) and PID(-p)
 
 
-# Run netstat with the necessary options to display listening ports and associated programs
 netstat -tuln | awk '
     NR > 2 { 
         split($4, local, ":");  # Split the local address into IP and port
