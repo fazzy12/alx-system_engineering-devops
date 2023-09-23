@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
 # Bash script displays listenting sockets(-l) and PID(-p)
 
-sudo netstat -pl
+#!/bin/bash
+
+# Run netstat with the necessary options to display listening ports and associated programs
+netstat -tuln | awk '
+    NR > 2 { 
+        split($4, local, ":");  # Split the local address into IP and port
+        cmd = "lsof -i : " local[2] " | grep LISTEN | awk '"'"'{print $2, $1}'"'"'";  # Get PID and program name
+        cmd | getline output;
+        close(cmd);
+        print $1, $2, $3, local[2], $7, output;  # Print protocol, Recv-Q, Send-Q, port, state, PID/Program name
+    }
+'
+
