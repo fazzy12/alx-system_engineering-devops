@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Bash script displays all active IPv4s on machine
+# Use ifconfig to retrieve network interface information and filter for IPv4 addresses
 
-ifconfig | grep "inet addr" | cut -d":" -f2 | cut -d" " -f1
+ifconfig | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"
