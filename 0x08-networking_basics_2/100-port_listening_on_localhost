@@ -6,4 +6,5 @@
 # Type (terminal 1): Hey there!
 # See: (terminal 0): Hey there!
 
-nc -l 98
+# Listen on port 98 on localhost
+sudo nc -l -p 98
