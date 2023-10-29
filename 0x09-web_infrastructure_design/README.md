@@ -1,10 +1,10 @@
 # Web Infrastructure Design Project
 
-**Author:** Sylvain Kalache, co-founder at Holberton School
-**Project Team:** Ifeanyi Kalu
-**Project Duration:** November 10, 2022, 6:00 AM - November 14, 2022, 6:00 AM
-**Manual QA Review:** EKENE ODIBE on November 15, 2022, 10:43 PM
-**Project Completion:** 200.0% (Mandatory: 100.0%, Optional: 100.0%)
+- **Author:** Sylvain Kalache, co-founder at Holberton School
+- **Project Team:** Ifeanyi Kalu
+- **Project Duration:** November 10, 2022, 6:00 AM - November 14, 2022, 6:00 AM
+- **Manual QA Review:** EKENE ODIBE on November 15, 2022, 10:43 PM
+- **Project Completion:** 200.0% (Mandatory: 100.0%, Optional: 100.0%)
 
 ## Table of Contents
 
