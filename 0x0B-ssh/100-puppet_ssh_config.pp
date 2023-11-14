@@ -1,13 +1,11 @@
-# Puppet manifest for SSH client configuration
-
-file { '/home/your_username/.ssh/config':
-  ensure  => present,
-  content => "
-    Host your_server_alias
-      HostName your_server_ip
-      User ubuntu
-      IdentityFile ~/.ssh/school
-      PasswordAuthentication no
-      PreferredAuthentications publickey
-  ",
+#client SSH configuration file to connect to server without typing a password.
+file_line { 'Turn off passwd auth':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
 }
+file_line { 'Declare identity file':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    IdentityFile ~/.ssh/school',
+  }
