@@ -1,4 +1,7 @@
-![SSH Logo](4i8il3B.gif)
+<div style="width: 100%; height: 0; padding-bottom: 50%; position: relative;">
+    <img src="4i8il3B.gif" alt="OOP Image" style="position: absolute; width: 800%; height: 100%; object-fit: cover;">
+</div>
+
 
 # Configuration Management Project
 
