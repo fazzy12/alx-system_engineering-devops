@@ -1,7 +1,5 @@
-# 2-execute_a_command.pp
-
-exec { 'killmenow':
-  command     => 'pkill -f killmenow',
-  refreshonly => true,
-  subscribe   => File['/killmenow'],
+# Executes a bash command
+exec { 'kill':
+  command => 'pkill -f killmenow',
+  path    => ['/usr/bin', '/usr/sbin']
 }
