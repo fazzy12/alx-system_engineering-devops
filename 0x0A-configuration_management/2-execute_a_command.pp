@@ -1,6 +1,7 @@
-# Using Puppet, create a manifest that kills a process named 'killmenow'
-# Must use 'exec' and 'pkill'
+# 2-execute_a_command.pp
 
-exec { 'pkill killmenow':
-  command => '/usr/bin/pkill -f /killmenow',
+exec { 'killmenow':
+  command     => 'pkill -f killmenow',
+  refreshonly => true,
+  subscribe   => File['/killmenow'],
 }
