@@ -13,12 +13,6 @@ This configuration management project is part of the SE Foundations curriculum a
 
 The inspiration for this project comes from real-world experiences, such as the incident at SlideShare where an auto-remediation tool, Skynet, played a crucial role in restoring the infrastructure after a critical bug. The incident highlights the importance of automated configuration management, specifically using tools like Puppet.
 
-## Curriculum Information
-
-- **Average Score:** 122.47%
-- **Project Duration:** Dec 9, 2022, 6:00 AM - Dec 10, 2022, 6:00 AM
-- **Auto QA Review:** 7.0/9 mandatory (77.78%)
-
 ## Resources
 
 - [Intro to Configuration Management](https://www.digitalocean.com/community/tutorials/an-introduction-to-configuration-management)
