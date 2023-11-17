@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Set the container ID in a variable
 CONTAINER_ID="8fb7d1d98188"
-
 ssh ubuntu@18.207.112.235
 
 # Start Docker container
