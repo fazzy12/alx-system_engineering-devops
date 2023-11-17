@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Set the container ID in a variable
+CONTAINER_ID="8fb7d1d98188"
+
+ssh ubuntu@18.207.112.235
+
+# Start Docker container
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Check Apache status
+docker exec -ti "$CONTAINER_ID" service apache2 status
+
+# Start Apache if not running
+docker exec -ti "$CONTAINER_ID" service apache2 start
+
+# Check Apache listening ports
+docker exec -ti "$CONTAINER_ID" netstat -tulpen
+
+# Check Apache error logs
+docker exec -ti "$CONTAINER_ID" cat /var/log/apache2/error.log
+
+# Create an HTML file in Apache root directory
+docker exec -ti "$CONTAINER_ID" bash -c 'echo "Hello Holberton" > /var/www/html/index.html'
+
+# Test the page with curl
+curl 0:8080
