@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
+
 # Set the container ID in a variable
 CONTAINER_ID="8fb7d1d98188"
-ssh ubuntu@18.207.112.235
 
 # Start Docker container
 docker run -p 8080:80 -d -it holbertonschool/265-0
 
 # Check Apache status
-docker exec -ti "$CONTAINER_ID" service apache2 status
+status_output=$(docker exec -ti "$CONTAINER_ID" service apache2 status)
 
-# Start Apache if not running
-docker exec -ti "$CONTAINER_ID" service apache2 start
+# Check if Apache is running
+if echo "$status_output" | grep -q "apache2 is running"; then
+    echo "Apache is running."
+else
+    # Start Apache if not running
+    docker exec -ti "$CONTAINER_ID" service apache2 start
+    echo "Apache started."
+fi
 
 # Check Apache listening ports
 docker exec -ti "$CONTAINER_ID" netstat -tulpen
