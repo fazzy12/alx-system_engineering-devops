@@ -20,7 +20,7 @@ docker exec -ti "$CONTAINER_ID" netstat -tulpen
 docker exec -ti "$CONTAINER_ID" cat /var/log/apache2/error.log
 
 # Create an HTML file in Apache root directory
-docker exec -ti "$CONTAINER_ID" bash -c 'echo "Hello Holberton" > /var/www/html/index.html'
+docker exec -ti "$CONTAINER_ID" bash -c 'echo "Hello Holberton." > /var/www/html/index.html'
 
 # Test the page with curl
 curl 0:8080
