@@ -1,16 +1,8 @@
 # Web Server Configuration Project
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 50%;  align-items: center;">
-
-  <div style="flex: 1; padding: 10px;">
-    <img src="img.jpg" alt="Header Image 1" style="max-width: 100%; height: auto;">
-  </div>
-
   <div style="flex: 1; padding: 10px;">
     <img src="img2.png" alt="Header Image 2" style="max-width: 100%; height: auto;">
   </div>
-
-</div>
 
 
 ## Overview
@@ -35,6 +27,10 @@ By the end of this project, you should be able to:
 - Understand the concept of a child process and why web servers use parent and child processes.
 - Identify and describe main HTTP requests.
 - Define DNS, its main role, and various DNS record types (A, CNAME, TXT, MX).
+
+<div style="flex: 1; padding: 10px;">
+  <img src="img.jpg" alt="Header Image 1" style="max-width: 100%; height: auto;">
+</div>
 
 ## Project Structure
 
