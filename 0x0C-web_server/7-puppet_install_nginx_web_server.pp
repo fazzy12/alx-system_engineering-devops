@@ -1,53 +1,79 @@
-# Puppet manifest to install and configure Nginx web server
+# add stable version of nginx
+exec { 'add nginx stable repo':
+  command => 'sudo add-apt-repository ppa:nginx/stable',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+}
 
-# Install Nginx package
+# update software packages list
+exec { 'update packages':
+  command => 'apt-get update',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+}
+
+# install nginx
 package { 'nginx':
-  ensure => 'installed',
+  ensure     => 'installed',
 }
 
-# Configure Nginx
+# allow HTTP
+exec { 'allow HTTP':
+  command => "ufw allow 'Nginx HTTP'",
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+  onlyif  => '! dpkg -l nginx | egrep \'îi.*nginx\' > /dev/null 2>&1',
+}
+
+# change folder rights
+exec { 'chmod www folder':
+  command => 'chmod -R 755 /var/www',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+}
+
+# create index file
 file { '/var/www/html/index.html':
-  ensure  => 'present',
-  content => 'Hello World!',
+  content => "Hello World!\n",
 }
 
-file { '/etc/nginx/sites-available/default':
-  ensure  => 'file',
-  content => "
-    server {
+# create index file
+file { '/var/www/html/404.html':
+  content => "Ceci n'est pas une page\n",
+}
+
+# add redirection and error page
+file { 'Nginx default config file':
+  ensure  => file,
+  path    => '/etc/nginx/sites-enabled/default',
+  content =>
+"server {
         listen 80 default_server;
         listen [::]:80 default_server;
-
-        root /var/www/html;
-        index index.html;
-
+               root /var/www/html;
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
         server_name _;
-
         location / {
-            return 200 'Hello World!';
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files \$uri \$uri/ =404;
         }
-
-        location /redirect_me {
-            return 301;
-        }
-
         error_page 404 /404.html;
-        location = /404.html {
-            return 404 'Ceci n\'est pas une page';
+        location  /404.html {
+            internal;
         }
-    }
-  ",
+        
+        if (\$request_filename ~ redirect_me){
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        }
+}
+",
+}
+# restart nginx
+exec { 'restart service':
+  command => 'service nginx restart',
+  path    => '/usr/bin:/usr/sbin:/bin',
 }
 
-# Enable the default site
-file { '/etc/nginx/sites-enabled/default':
-  ensure => 'link',
-  target => '/etc/nginx/sites-available/default',
-}
-
-# Restart Nginx service
+# start service nginx
 service { 'nginx':
-  ensure    => 'running',
-  enable    => true,
-  subscribe => File['/etc/nginx/sites-available/default'],
+  ensure  => running,
+  require => Package['nginx'],
 }
