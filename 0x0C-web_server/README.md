@@ -1,6 +1,6 @@
 # Web Server Configuration Project
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
 
   <div style="flex: 1; padding: 10px;">
     <img src="img.jpg" alt="Header Image 1" style="max-width: 100%; height: auto;">
