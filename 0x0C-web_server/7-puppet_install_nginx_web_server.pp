@@ -1,25 +1,53 @@
-# Script to install nginx using puppet
+# Puppet manifest to install and configure Nginx web server
 
-package {'nginx':
-  ensure => 'present',
+# Install Nginx package
+package { 'nginx':
+  ensure => 'installed',
 }
 
-exec {'install':
-  command  => 'sudo apt-get update ; sudo apt-get -y install nginx',
-  provider => shell,
-
+# Configure Nginx
+file { '/var/www/html/index.html':
+  ensure  => 'present',
+  content => 'Hello World!',
 }
 
-exec {'Hello':
-  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html',
-  provider => shell,
+file { '/etc/nginx/sites-available/default':
+  ensure  => 'file',
+  content => "
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html;
+
+        server_name _;
+
+        location / {
+            return 200 'Hello World!';
+        }
+
+        location /redirect_me {
+            return 301;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+            return 404 'Ceci n\'est pas une page';
+        }
+    }
+  ",
 }
 
-exec {'sudo sed -i "s/listen 80 default_server;/listen 80 default_server;\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/fazzy.tech\/;\\n\\t}/" /etc/nginx/sites-available/default':
-  provider => shell,
+# Enable the default site
+file { '/etc/nginx/sites-enabled/default':
+  ensure => 'link',
+  target => '/etc/nginx/sites-available/default',
 }
 
-exec {'run':
-  command  => 'sudo service nginx restart',
-  provider => shell,
+# Restart Nginx service
+service { 'nginx':
+  ensure    => 'running',
+  enable    => true,
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
