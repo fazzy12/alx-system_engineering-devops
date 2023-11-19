@@ -1,7 +1,7 @@
 # Web Server Configuration Project
 
   <div style="flex: 1; padding: 10px;">
-    <img src="img2.png" alt="Header Image 2" style="max-width: 100%; height: auto;">
+    <img src="img2.png" alt="Header Image 2" style="max-width: 100%; height: 500px;">
   </div>
 
 
