@@ -1,54 +1,44 @@
-## Webstack Debugging #1
+# Web Stack Debugging #1
+![image](B4eeypV.jpg)
 
-### Description of what each file shows:
-0. Requirement: Nginx must be running, and listening on port 80 of all the server’s active IPv4 IPs
-```
-root@966c5664b21f:/# curl 0:80
-curl: (7) Failed to connect to 0 port 80: Connection refused
-root@966c5664b21f:/#
-```
-after debugging, we should get
-```
-root@966c5664b21f:/# curl 0:80
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+This project focuses on debugging and fixing issues related to a web stack. In this specific task, the goal is to resolve an issue with Nginx not listening on port 80.
 
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
-root@966c5664b21f:/#
-```
-1. Tweak #0 except nginx status should return not running
-```
-root@966c5664b21f:/# service nginx status
- * nginx is not running
-```
+## Task 0: Nginx likes port 80
 
-### Environment
-* Language: Bash script
-* OS: Ubuntu 14.04 LTS
-* Container: Docker
-* Web Server: Apache
-* Style guidelines: [Shellscript for Bash](https://github.com/koalaman/shellcheck)
-* Resource: [Webstack debugging Intranet page](https://intranet.hbtn.io/concepts/68)
----
+The script `0-nginx_likes_port_80` fixes the issue by ensuring that Nginx is installed and configured to listen on port 80. It also meets the specified requirements for the project.
 
+### Instructions:
+
+1. Run the script using the following command:
+   ```
+   ./0-nginx_likes_port_80
+    ```
+
+## Task 1: Make it sweet and short
+
+The script `1-debugging_made_short` provides a concise and short version of the fix for Nginx not listening on port 80, meeting the additional requirement of being 5 lines or less.
+
+### Instructions:
+
+1. Run the script using the following command:
+   ```bash
+   ./1-debugging_made_short
+
+## Requirements
+
+- All scripts are intended to be run on Ubuntu 20.04 LTS.
+- Ensure that your system allows the use of editors such as `vi`, `vim`, or `emacs`.
+- Scripts must be executable and pass Shellcheck without errors.
+- Nginx must be running and listening on port 80 of all active IPv4 IPs after script execution.
+
+## Important Note
+
+Always test scripts in a safe environment before applying them to a production setting. The provided scripts make assumptions about the environment and may need adjustments based on specific configurations.
+
+## Repository Information
+
+- **GitHub Repository:** [alx-system_engineering-devops](https://github.com/your-username/alx-system_engineering-devops)
+- **Directory:** 0x0E-web_stack_debugging_1
+
+Feel free to contribute or provide feedback to improve this project! If you encounter any issues, please report them in the repository's issue tracker.
