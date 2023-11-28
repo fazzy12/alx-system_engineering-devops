@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Fix Nginx not listening on port 80 (short version)
 
-sed -i 's/80 default_server/80 default_server backlog=2048/' /etc/nginx/sites-available/default
+sed -i 's/8080/80/g' /etc/nginx/sites-available/default
 service nginx restart
