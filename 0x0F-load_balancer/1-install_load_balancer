@@ -1,28 +1,25 @@
 #!/usr/bin/env bash
-# Create a script to install and configure HAProxy on lb-01 server
-# Configure HAProxy to send traffic to web-01 and web-02 servers
-# Distribute requests using a roundrobin algorithm
-# Make sure that HAProxy can be managed via an init script
-# Install and configure HAproxy on my lb-01 server.
-sudo apt-get -y update
-apt-get -y install haproxy
+# This script installs and configures HAProxy on lb-01 server
 
-# edit config file
-server_config=\
-"
-frontend  fazzy-frontend
-        bind *:80
-        mode http
-        default_backend fazzy-backend
-backend ehoneah-backend
-        balance roundrobin
-        server 63210-web-01 100.25.19.204:80 check
-        server 63210-web-02 54.157.159.85:80 check
-"
-echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
+# Update the package list
+sudo apt-get update
 
-# enable haproxy to be started by init script
+# Install HAProxy
+sudo apt-get install -y haproxy
 
-echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+# Configure HAProxy
+sudo tee /etc/haproxy/haproxy.cfg > /dev/null <<EOF
+frontend web_frontend
+    bind *:80
+    mode http
+    default_backend web_backend
 
+backend web_backend
+    mode http
+    balance roundrobin
+    server  57446-web-01 18.204.16.29:80 check
+    server  57446-web-02 54.90.56.254:80 check
+EOF
+
+# Restart HAProxy to apply the changes
 sudo service haproxy restart
