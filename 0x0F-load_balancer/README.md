@@ -74,7 +74,7 @@ This project aims to automate the configuration of a web stack with load balanci
 
 ## Author
 
-- [Ifeanyi Kalu](https://github.com/fazzy12) - Co-founder at Holberton School
+- [Ifeanyi Kalu](https://github.com/fazzy12)
 
 ---
 
