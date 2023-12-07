@@ -1,23 +1,95 @@
-## HTTPS SSL
-> HTTPS is a secure version of HTTP, used to encrypt all communication between
-> the client and the website servers. When setting up HTTPS on our website,
-> we should place the certificate on our website web server(s). Resources:
-> [SSL](https://www.sslshopper.com/why-ssl-the-purpose-of-using-ssl-certificates.html),
-> [Step-by-Step Guide I followed to create SSL certificate!](https://www.digitalocean.com/community/tutorials/how-to-secure-haproxy-with-let-s-encrypt-on-ubuntu-14-04),
-> [HTTP to HTTPS](https://www.instantssl.com/ssl-certificate-products/https.html),
-> [sample Bash functions taking parameters](http://tldp.org/LDP/abs/html/complexfunct.html)
+# Project Title
 
-### Description of what each file shows:
-Files that start with:
-1. After updating A records for www (to point to load balancer), lb-01, web-01, and web-02 on [Gandi](https://www.gandi.net/en), running this script shows our subdomain and A records
-2. After following the Step-by-Step Guide on Digital Ocean to install a certificate, this shows the most updated HAproxy config file. HAproxy is listening to port TCP 443 and accepts SSL traffic.
-3. Shows updated HAproxy config file. Redirects HTTP traffic to HTTPS. HAproxy returns a 301 permanent redirect.
+## Overview
 
-### Environment
-* Language: Bash script
-* OS: Ubuntu 14.04 LTS
-* Web Servers: web-01, web-02 Nginx
-* Domain Name: from [Gandi](https://www.gandi.net/en)
-* Style guidelines: [Shellscript for Bash](https://github.com/koalaman/shellcheck)
+This project focuses on implementing HTTPS and SSL-related configurations using HAProxy, with the goal of securing website traffic and understanding essential concepts in web security.
 
----
+## Table of Contents
+
+- [SE Foundations](#se-foundations)
+- [Project Tasks](#project-tasks)
+  - [Task 0: World Wide Web](#task-0-world-wide-web)
+  - [Task 1: HAProxy SSL Termination](#task-1-haproxy-ssl-termination)
+  - [Task 2: No Loophole in Your Website Traffic](#task-2-no-loophole-in-your-website-traffic)
+- [Usage](#usage)
+- [Issues](#issues)
+- [Contributing](#contributing)
+- [License](#license)
+
+## SE Foundations
+
+### Concepts Covered
+
+- HTTPS and SSL
+- DNS
+- Web stack debugging
+
+### Learning Objectives
+
+At the end of this project, participants are expected to be able to:
+
+- Explain the roles of HTTPS and SSL.
+- Understand the purpose of encrypting web traffic.
+- Implement SSL termination on HAProxy.
+- Configure DNS for subdomains and perform web stack debugging.
+
+## Project Tasks
+
+### Task 0: World Wide Web
+
+#### Requirements
+
+- Configure domain zone for subdomains.
+- Write a Bash script to display information about subdomains.
+
+#### Example Usage
+
+```
+./0-world_wide_web holberton.online
+./0-world_wide_web holberton.online web-02
+```
+
+## Task 1: HAProxy SSL Termination
+
+### Requirements
+
+- Configure HAProxy to handle encrypted traffic.
+- Create a certificate using certbot.
+- Serve encrypted traffic returning the root of the web server.
+
+### Example Usage
+
+```
+curl -sI https://www.holberton.online
+curl https://www.holberton.online
+```
+
+## Task 2: No Loophole in Your Website Traffic
+
+### Requirements
+
+- Enforce HTTPS traffic.
+- Configure HAProxy to redirect HTTP traffic to HTTPS.
+
+### Example Usage
+
+```
+curl -sIL http://www.holberton.online
+```
+## Usage
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your_username/your_project.git
+cd your_project
+```
+
+2. Follow the instructions in each task directory.
+
+### Issues
+If you encounter any issues or have suggestions, please open an `issue`.
+
+### Contributing
+Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request.
+
