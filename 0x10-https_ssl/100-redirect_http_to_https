@@ -44,6 +44,9 @@ backend www-backend
     option httplog
     server 57446-web-01 34.224.15.177:80 check
     server 57446-web-02 18.233.63.177:80 check
+    server 57446-web-01-https 34.224.15.177:443 check ssl verify none
+    server 57446-web-02-https 18.233.63.177:443 check ssl verify none
+
 
 # Enable statistics page (optional)
 listen stats
