@@ -1,19 +1,27 @@
 #!/usr/bin/env bash
-#Configure domain zone so that the subdomain www points to your load-balancer IP
-#shellcheck disable=SC2059
-subdomain()
-{
-    RECORD_TYPE=$(dig "$1" | awk '/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]/{print $4}')
-    DEST=$(dig "$1" | awk '/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]/{print $5}')
-    echo The subdomain "$2" is a "$RECORD_TYPE" record and points to "$DEST"
+# Function to display DNS information for a subdomain
+
+get_dns_info() {
+  subdomain=$1
+  domain=$2
+
+  dns_info=$(dig "${subdomain}.${domain}" | grep -A1 'ANSWER SECTION:')
+
+
+  subdomain_record_type=$(echo "${dns_info}" | awk '/IN/{print $4}')
+  subdomain_destination=$(echo "${dns_info}" | awk '/IN/{print $5}')
+
+  echo "The subdomain ${subdomain} is a ${subdomain_record_type} record and points to ${subdomain_destination}"
 }
 
-if [ "$2" ]
-then
-    subdomain "$2.$1" "$2"
+if [ $# -eq 1 ]; then
+  get_dns_info "www" "$1"
+  get_dns_info "100.26.247.12" "$1"
+  get_dns_info "34.224.15.177" "$1"
+  get_dns_info "18.233.63.177" "$1"
+elif [ $# -eq 2 ]; then
+  get_dns_info "$2" "$1"
 else
-    subdomain "www.$1" www
-    subdomain "lb-01.$1" lb-01
-    subdomain "web-01.$1" web-01
-    subdomain "web-02.$1" web-02
+  echo "Usage: $0 domain [subdomain]"
+  exit 1
 fi
