@@ -6,14 +6,13 @@ get_dns_info() {
     echo "$2 $script" | awk '{print "The subdomain " $1 " is a " $2 " record and points to " $3}'
 }
 
-if [ $# -eq 1 ]; then
-  get_dns_info "www" "$1"
-  get_dns_info "100.26.247.12" "$1"
-  get_dns_info "34.224.15.177" "$1"
-  get_dns_info "18.233.63.177" "$1"
-elif [ $# -eq 2 ]; then
-  get_dns_info "$2" "$1"
-else
-  echo "Usage: $0 domain [subdomain]"
-  exit 1
+if [ "$#" == 1 ]
+then
+  dns_config "$1" "www"
+  dns_config "$1" "lb-01"
+  dns_config "$1" "web-01"
+  dns_config "$1" "web-02"
+elif [ "$#" == 2 ]
+then
+  dns_config "$1" "$2"
 fi
