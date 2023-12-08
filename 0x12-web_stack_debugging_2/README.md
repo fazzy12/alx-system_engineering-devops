@@ -1,5 +1,7 @@
 # Web Stack Debugging 2
 
+!(header image)[header.jpg]
+
 ## Overview
 
 This project focuses on web stack debugging and DevOps practices. The tasks involve fixing configurations and optimizing the setup of an Nginx web server to enhance security and performance.
