@@ -2,11 +2,15 @@
 sudo apt-get update
 
 # Install UFW if not already installed
-sudo apt-get install ufw
+sudo apt-get -y install ufw
 
 # Set the default policies to deny incoming and allow outgoing traffic
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
+
+sudo ufw disable
+
+sudo sytemctl stop ufw
 
 # Allow incoming SSH (port 22) traffic
 sudo ufw allow 22/tcp
