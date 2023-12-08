@@ -1,6 +1,6 @@
 # Web Stack Debugging 2
 
-!(header image)[header.jpg]
+![header image](header.jpg)
 
 ## Overview
 
