@@ -1,0 +1,14 @@
+# View the current ufw status (optional)
+sudo ufw status
+
+# Allow incoming traffic on port 80/TCP
+sudo ufw allow 80/tcp
+
+# Redirect incoming traffic from port 8080/TCP to port 80/TCP
+sudo ufw route allow 8080 comment 'HTTP'
+
+# Update the ufw configuration
+sudo ufw reload
+
+# View the updated ufw status (optional)
+sudo ufw status
