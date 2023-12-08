@@ -1,26 +1,62 @@
-## Web stack debugging #2
-> "Although NGINX master process is typically started with root privileges in order to listen on port 80 and 443, it can and should run as another non-root user in order to perform the web services... One of the best ways to reduce your exposure to attack when running a web server is to create a unique, unprivileged user and group for the server application." -[Run NGINX Web Server as non-root user](https://github.com/GSA/ansible-https-proxy/issues/1) The root user is a superuser that can do anything on a Unix machine, the top administrator. Security wise, you must do everything that you can to prevent an attacker from logging in as root. With this in mind, it’s a good practice not to run your web servers as root (which is the default for most configurations) and instead run the process as the less privileged nginx user instead. This way, if a hacker does find a security issue that allows them to break-in to your server, the impact is limited by the permissions of the nginx user.
+# Web Stack Debugging 2
 
-### Description of what each file shows:
-Files that start with:
-0. script runs as another user
-1. script configures nginx to be running as nginx user and not root; listens on all active IPs on port 8080. After debugging we should see:
-```
-root@ab6f4542747e:~# ps auxff | grep ngin[x]
-nginx      884  0.0  0.0  77360  2744 ?        Ss   19:16   0:00 nginx: master process /usr/sbin/nginx
-nginx      885  0.0  0.0  77712  2772 ?        S    19:16   0:00  \_ nginx: worker process
-nginx      886  0.0  0.0  77712  3180 ?        S    19:16   0:00  \_ nginx: worker process
-nginx      887  0.0  0.0  77712  3180 ?        S    19:16   0:00  \_ nginx: worker process
-nginx      888  0.0  0.0  77712  3208 ?        S    19:16   0:00  \_ nginx: worker process
-root@ab6f4542747e:~#
-root@ab6f4542747e:~# nc -z 0 8080 ; echo $?
-0
-root@ab6f4542747e:~#
-```
+## Overview
 
-### Environment
-* Language: Bash scripts
-* OS: Ubuntu 14.04 LTS
-* Web Server: Nginx
-* Style guidelines: [Shellscript for Bash](https://github.com/koalaman/shellcheck)
+This project focuses on web stack debugging and DevOps practices. The tasks involve fixing configurations and optimizing the setup of an Nginx web server to enhance security and performance.
 
+## Table of Contents
+
+- [Tasks](#tasks)
+  - [Task 0: Run Software as Another User](#task-0-run-software-as-another-user)
+  - [Task 1: Run Nginx as Nginx](#task-1-run-nginx-as-nginx)
+  - [Task 2: 7 Lines or Less](#task-2-7-lines-or-less)
+- [Scripts](#scripts)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Tasks
+
+### Task 0: Run Software as Another User
+
+The script in `0-iamsomeoneelse` allows running the `whoami` command under a specified user, promoting better security practices by avoiding direct execution as the root user.
+
+### Task 1: Run Nginx as Nginx
+
+The script in `1-run_nginx_as_nginx` configures Nginx to run as the `nginx` user, listening on port 8080. This enhances security by avoiding the default configuration of running web servers as the root user.
+
+### Task 2: 7 Lines or Less
+
+The script in `100-fix_in_7_lines_or_less` optimizes the Nginx configuration script, achieving the same results with brevity and readability within 7 lines.
+
+## Scripts
+
+- `0-iamsomeoneelse`: Script for Task 0.
+- `1-run_nginx_as_nginx`: Script for Task 1.
+- `100-fix_in_7_lines_or_less`: Optimized script for Task 2.
+
+## Usage
+
+1. Clone the repository:
+
+   ```
+    git clone https://github.com/your-username/alx-system_engineering-devops.git
+    ```
+
+2. Navigate to the project directory:
+
+
+    ```
+    cd alx-system_engineering-devops/0x12-web_stack_debugging_2
+    ```
+
+3. Run the scripts:
+
+    ```
+    ./0-iamsomeoneelse <username>
+    ./1-run_nginx_as_nginx
+    ./100-fix_in_7_lines_or_less
+    ```
+### Contributing
+
+Contributions are welcome! Feel free to open `issues` or `pull requests`.
