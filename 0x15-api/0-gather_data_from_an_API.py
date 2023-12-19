@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-This module provides functionality to retrieve and
-display todo list progress for a given employee ID using a REST API.
-"""
+"""This module provides functionality to retrieve and display the todo list"""
 
 
 import requests
