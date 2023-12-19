@@ -12,18 +12,6 @@ import sys
 def fetch_employee_data(id):
     """
     Fetch the todo list progress for a given employee ID from the API.
-
-    Parameters:
-    - employee_id (int): The ID of the employee for whom to fetch the data.
-
-    Returns:
-    - dict: A dictionary containing the employee's name, number of completed
-    tasks, total tasks, and the list of completed task titles.
-
-    Raises:
-    - ValueError: If the employee ID is not an integer or if there's an
-    issue fetching data from the API.
-
     """
 
     url = "https://jsonplaceholder.typicode.com"
@@ -56,15 +44,6 @@ def fetch_employee_data(id):
 def display_employee_progress(employee_data):
     """
     Display the todo list progress of the employee in the specified format.
-
-    Parameters:
-    - employee_data (dict): A dictionary containing the employee's name,
-    number of completed tasks, total tasks, and the list
-    of completed task titles.
-
-    Returns:
-    - None
-
     """
     if not employee_data:
         return
