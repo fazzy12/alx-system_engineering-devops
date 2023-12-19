@@ -14,16 +14,15 @@ if __name__ == '__main__':
     response = requests.get(f"{base_url}/users/{employee_id}")
 
     employee_data = response.json()
-    employee_name = employee_data.get("name")
+    name = employee_data.get("name")
 
     response = requests.get(f"{base_url}/todos?userId={employee_id}")
 
     todos = response.json()
     total_tasks = len(todos)
     completed_tasks = [todo for todo in todos if todo["completed"]]
-    num_completed_tasks = len(completed_tasks)
+    finish = len(completed_tasks)
 
-    print(f"Employee {employee_name} \
-        is done with tasks({num_completed_tasks}/{total_tasks}): ")
+    print(f"Employee {name} is done with tasks({finish}/{total_tasks}): ")
     for task in completed_tasks:
         print(f"\t {task['title']}")
