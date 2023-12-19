@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Accessing a REST API for todo lists of employees"""
+"""This module provides functionality to retrieve and
+display TODO list progress for a given employee ID using a REST API."""
 
 import requests
 import sys
