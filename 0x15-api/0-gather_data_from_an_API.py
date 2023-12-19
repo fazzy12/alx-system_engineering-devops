@@ -1,13 +1,8 @@
 #!/usr/bin/python3
 """
-        0-gather_data_from_an_API.py
-
-        This module provides functionality to retrieve and
-        display TODO list progress for a given employee ID using a REST API.
-
-        Usage:
-            python3 0-gather_data_from_an_API.py <employee_id>
-        """
+This module provides functionality to retrieve and
+display todo list progress for a given employee ID using a REST API.
+"""
 
 
 import requests
@@ -16,7 +11,7 @@ import sys
 
 def fetch_employee_data(id):
     """
-    Fetch the TODO list progress for a given employee ID from the API.
+    Fetch the todo list progress for a given employee ID from the API.
 
     Parameters:
     - employee_id (int): The ID of the employee for whom to fetch the data.
@@ -60,7 +55,7 @@ def fetch_employee_data(id):
 
 def display_employee_progress(employee_data):
     """
-    Display the TODO list progress of the employee in the specified format.
+    Display the todo list progress of the employee in the specified format.
 
     Parameters:
     - employee_data (dict): A dictionary containing the employee's name,
