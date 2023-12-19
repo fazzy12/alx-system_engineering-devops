@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """
-0-gather_data_from_an_API.py
+    0-gather_data_from_an_API.py
 
-This module provides functionality to retrieve and
-display TODO list progress for a given employee ID using a REST API.
+    This module provides functionality to retrieve and
+    display TODO list progress for a given employee ID using a REST API.
 
-Usage:
-    python3 0-gather_data_from_an_API.py <employee_id>
-
-"""
+    Usage:
+        python3 0-gather_data_from_an_API.py <employee_id>
+    """
 
 
 import requests
