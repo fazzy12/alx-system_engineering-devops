@@ -24,10 +24,8 @@ if __name__ == "__main__":
 
     filename = f"{employee_id}.csv"
 
-    with open(filename, 'w', newline='') as csvfile:
+    with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(
-            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
         for task in tasks:
             csvwriter.writerow(
