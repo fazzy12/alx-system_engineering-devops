@@ -1,34 +1,33 @@
 #!/usr/bin/python3
 """
-Export data from the given REST API to a CSV file.
+Using https://jsonplaceholder.typicode.com
+gathers data from API and exports it to CSV file
+Implemented using recursion
 """
-
-import csv
+import re
 import requests
 import sys
 
-if __name__ == "__main__":
-    employee_id = sys.argv[1]
-    base_url = "https://jsonplaceholder.typicode.com"
-    user_url = f"{base_url}/users/{employee_id}"
-    todos_url = f"{base_url}/todos?userId={employee_id}"
 
-    user_response = requests.get(user_url)
-    todos_response = requests.get(todos_url)
+API = "https://jsonplaceholder.typicode.com"
+"""REST API url"""
 
-    user_data = user_response.json()
-    todos_data = todos_response.json()
 
-    username = user_data.get('username', 'Unknown')
-    tasks = todos_data
-
-    filename = f"{employee_id}.csv"
-
-    with open(filename, 'w') as csvfile:
-        csvwriter = csv.writer(csvfile)
-
-        for task in tasks:
-            csvwriter.writerow(
-                [employee_id, username, task['completed'], task['title']])
-
-    print(f"Data exported to {filename}")
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        if re.fullmatch(r'\d+', sys.argv[1]):
+            id = int(sys.argv[1])
+            user_res = requests.get('{}/users/{}'.format(API, id)).json()
+            todos_res = requests.get('{}/todos'.format(API)).json()
+            user_name = user_res.get('username')
+            todos = list(filter(lambda x: x.get('userId') == id, todos_res))
+            with open('{}.csv'.format(id), 'w') as file:
+                for todo in todos:
+                    file.write(
+                        '"{}","{}","{}","{}"\n'.format(
+                            id,
+                            user_name,
+                            todo.get('completed'),
+                            todo.get('title')
+                        )
+                    )
