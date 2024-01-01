@@ -1,41 +1,58 @@
-## Webstack Debugging #3
-> Learning to debug Apache and WordPress with ```strace``` and ```error.log``` files.
+# Web Stack Debugging Project: Fixing Apache 500 Error
+
+## Overview
+
+Welcome to the Web Stack Debugging Project, where we tackle real-world challenges in managing and troubleshooting web stacks. In this project, we focus on debugging and fixing an Apache 500 error on a WordPress website running on a LAMP stack.
+
+### Project Goals
+
+- Use `strace` to identify the root cause of the Apache 500 error.
+- Fix the identified issue manually.
+- Automate the fix using Puppet.
+- Ensure the WordPress website is running smoothly without any errors.
+
+## Technologies Used
+
+- Ubuntu 14.04 LTS
+- Apache
+- MySQL
+- PHP
+- WordPress
+- Puppet
+
+## Project Structure
+
+- `0-strace_is_your_friend.pp`: Puppet manifest file containing the code to automate the fix for the Apache 500 error.
+- `README.md`: This document providing an overview of the project and instructions for setup and usage.
+
+## Setup and Usage
+
+### Prerequisites
+
+- Ensure you have Ubuntu 14.04 LTS installed.
+- Install Puppet and `strace`:
+
+  ````
+  $ apt-get install -y ruby
+  $ gem install puppet-lint -v 2.1.1
+  ```
+
+### Instructions
+
+1. Clone the repository:
 
 ```
-# In one terminal of given buggy Docker container
-$ cat /var/log/apache2/error.log # no error found; weird
-
-# Set 'display_errors' to 'On' in /etc/php5/apache2/php.ini [resource](https://stackoverflow.com/questions/4731364/internal-error-500-apache-but-nothing-in-the-logs)
-$ sudo service apache2 restart
-
-# 'curl -sI 127.0.0.1' now returns status 200 but 'curl -s 127.0.0.1:80 | grep Holberton' doesn't return expected output
-$ ps -auxf
-$ strace -p <pid of apache2>
-
-# Strace will wait so curl in another terminal to watch for error message
-# After curling in other terminal, we see 'open("/var/www/html/wp-includes/class-wp-locale.php
-", O_RDONLY) = -1 ENOENT (No such file or directory)'
-# Opening /var/log/apache2/error.log, we see 'PHP Fatal error: require_once(): Failed opening required '/var/www/html/wp-includes/class-wp-locale.phpp' (include_path='.:/usr/share/php:/usr/share/pear') in /var/www/html/wp-settings.php on line 137'
-$ emacs /var/www/html/wp-settings.php # line 137 fix spelling error from '.phpp' to '.php'
+$ git clone https://github.com/your-username/alx-system_engineering-devops.git
+$ cd alx-system_engineering-devops/0x17-web_stack_debugging_3
 ```
+2. Update the Puppet manifest (`0-strace_is_your_friend.pp`) with the correct paths for your system.
+
+3. Apply the Puppet manifest to automate the fix:
 
 ```
-# In another terminal
-$ curl -sI 127.0.0.1
-$ curl -s 127.0.0.1:80 | grep Holberton
+$ puppet apply 0-strace_is_your_friend.pp
 ```
+4. Verify that the Apache 500 error is resolved and the WordPress website is functioning correctly.
 
-### Resources:
-* [Look at apache2 error log](https://stackoverflow.com/questions/4731364/internal-error-500-apache-but-nothing-in-the-logs)
-
-### Description of what each file shows:
-0- Usage: ```puppet apply 0-strace_is_your_friend.pp``` to automate fixing this particular error
-
-### Environment
-* OS: Ubuntu 14.04 LTS
-* Container: Docker
-* Web Server: Apache with WordPress
-* Automation Script to solve issue: Puppet
----
-### Authors
-[ifeanyi kalu](https://github.com/fazzy12)
+### Conclusion
+This project provides hands-on experience in debugging web stack issues and automating fixes using configuration management tools like Puppet. By following the instructions and applying the Puppet manifest, you can successfully resolve the Apache 500 error and ensure the smooth operation of the WordPress website. Happy debugging!
