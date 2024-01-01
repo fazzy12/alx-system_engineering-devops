@@ -1,24 +1,6 @@
-# Puppet manifest to fix the Apache 500 error
+# Apache returns 500; use this script to fix typo in config
 
-# Ensure correct permissions for the Apache configuration file
-file { '/etc/apache2/apache2.conf':
-  ensure => 'file',
-  owner  => 'www-data',
-  group  => 'www-data',
-  mode   => '0644',
-}
-
-# Ensure correct permissions for the web root directory
-file { '/var/www/html':
-  ensure => 'directory',
-  owner  => 'www-data',
-  group  => 'www-data',
-  mode   => '0755',
-}
-
-# Restart Apache to apply the changes
-service { 'apache2':
-  ensure  => 'running',
-  enable  => 'true',
-  require => File['/etc/apache2/apache2.conf', '/var/www/html'],
+exec { 'fix config typo':
+  command => "sed -i 's/.phpp/.php/' /var/www/html/wp-settings.php",
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
