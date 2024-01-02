@@ -4,6 +4,7 @@
 """
 import requests
 
+
 def count_words(subreddit, word_list, hot_list=None, after=None):
     """
     Recursively queries the Reddit API, parses titles of hot articles, and
