@@ -1,13 +1,48 @@
-## API Advanced
-> This repo covers how to use the Reddit API and how to recurse.
+# Reddit API Advanced Project
 
-### Resources:
-* [Reddit API](https://www.reddit.com/dev/api/)
+## Overview
 
-### Environment
-* Language: Python 3.4.3
-* OS: Ubuntu 14.04 LTS
-* Style guidelines: [PEP 8 (version 1.7) for Python 3.5](https://www.python.org/dev/peps/pep-0008/) || [Google Style Python Docstrings](http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
----
-### Authors
-Melissa Ng [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/MelissaNg__)
+This project offers a set of Python scripts to interact with the Reddit API, allowing users to retrieve information about subreddits, fetch titles of hot articles, and count occurrences of specified keywords in these articles.
+
+## Project Structure
+
+- **`0-subs.py`**: Fetches the number of subscribers for a given subreddit.
+- **`1-top_ten.py`**: Retrieves and prints titles of the first 10 hot posts from a specified subreddit.
+- **`2-recurse.py`**: Recursively fetches all hot posts from a given subreddit and returns their titles.
+- **`100-count.py`**: Recursively fetches hot posts and counts occurrences of specified keywords in their titles.
+
+## Setup & Usage
+
+### Prerequisites
+
+- Python 3.x
+- `requests` library
+
+Install the required library using:
+
+```bash
+pip install requests
+```
+
+### Instructions
+1. Navigate to the project directory.
+2. Run the desired script using Python.
+
+Examples:
+* To fetch the number of subscribers for the `programming` subreddit:
+
+```
+python3 0-subs.py programming
+```
+To retrieve titles of the first 10 hot posts from the `programming` subreddit:
+```
+python3 1-top_ten.py programming
+```
+To recursively fetch all hot posts from the `programming` subreddit and count occurrences of keywords like `python`, `java`, and `javascript`:
+```
+python3 100-count.py programming "python java javascript"
+```
+
+### Notes
+* Ensure that the subreddit name is valid; otherwise, the scripts might not produce the desired results.
+* The Reddit API can return a redirect for invalid subreddits. The scripts are designed to handle such redirects without following them.
