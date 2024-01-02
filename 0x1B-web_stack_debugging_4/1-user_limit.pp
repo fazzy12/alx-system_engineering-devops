@@ -1,16 +1,13 @@
 # 1-user_limit.pp
 
-# Increase file descriptor limit for holberton user
-exec { 'increase_file_limit_for_holberton':
-  command => 'echo "holberton soft nofile 65535" >> /etc/security/limits.conf
-   && echo "holberton hard nofile 65535" >> /etc/security/limits.conf',
-  path    => ['/bin', '/usr/bin'],
-  onlyif  => 'grep -q "^holberton" /etc/security/limits.conf',
+# Increase hard file limit for user holberton
+exec { 'increase-hard-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-# Reload session to apply new limits
-exec { 'reload_session':
-  command     => 'su - holberton -c "exec bash"',
-  refreshonly => true,
-  subscribe   => Exec['increase_file_limit_for_holberton'],
+# Increase soft file limit for user holberton
+exec { 'increase-soft-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
 }
