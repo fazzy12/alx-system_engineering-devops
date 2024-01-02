@@ -2,7 +2,8 @@
 
 # Increase file descriptor limit for holberton user
 exec { 'increase_file_limit_for_holberton':
-  command => 'echo "holberton soft nofile 65535" >> /etc/security/limits.conf && echo "holberton hard nofile 65535" >> /etc/security/limits.conf',
+  command => 'echo "holberton soft nofile 65535" >> /etc/security/limits.conf
+   && echo "holberton hard nofile 65535" >> /etc/security/limits.conf',
   path    => ['/bin', '/usr/bin'],
   onlyif  => 'grep -q "^holberton" /etc/security/limits.conf',
 }
