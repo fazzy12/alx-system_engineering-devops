@@ -1,4 +1,6 @@
+![Header Image](WIxXad8.png)
 # Reddit API Advanced Project
+
 
 ## Overview
 
